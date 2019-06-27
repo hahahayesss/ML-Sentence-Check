@@ -31,33 +31,33 @@ public class CnnSentence {
         return new NeuralNetConfiguration.Builder()
                 .weightInit(WeightInit.RELU)
                 .activation(Activation.LEAKYRELU)
-                .updater(new Adam(0.01))
+                .updater(new Adam(learningRate))
                 .convolutionMode(ConvolutionMode.Same)
                 .l2(0.0001)
                 .graphBuilder()
                 .addInputs("input")
-                .addLayer("cnn3",
-                        new ConvolutionLayer.Builder()
-                                .kernelSize(3, vectorSize)
-                                .stride(1, vectorSize)
-                                .nOut(cnnLayerFeatureMaps)
-                                .build(),
-                        "input")
-                .addLayer("cnn4",
+                .addLayer("cnn0",
                         new ConvolutionLayer.Builder()
                                 .kernelSize(5, vectorSize)
                                 .stride(1, vectorSize)
                                 .nOut(cnnLayerFeatureMaps)
                                 .build(),
                         "input")
-                .addLayer("cnn5",
+                .addLayer("cnn1",
                         new ConvolutionLayer.Builder()
-                                .kernelSize(5, vectorSize)
+                                .kernelSize(7, vectorSize)
                                 .stride(1, vectorSize)
                                 .nOut(cnnLayerFeatureMaps)
                                 .build(),
                         "input")
-                .addVertex("merge", new MergeVertex(), "cnn3", "cnn4", "cnn5")
+                .addLayer("cnn2",
+                        new ConvolutionLayer.Builder()
+                                .kernelSize(9, vectorSize)
+                                .stride(1, vectorSize)
+                                .nOut(cnnLayerFeatureMaps)
+                                .build(),
+                        "input")
+                .addVertex("merge", new MergeVertex(), "cnn0", "cnn1", "cnn2")
                 .addLayer("globalPool",
                         new GlobalPoolingLayer.Builder()
                                 .poolingType(PoolingType.MAX)

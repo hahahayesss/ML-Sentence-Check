@@ -45,14 +45,14 @@ public class CnnSentence {
                         "input")
                 .addLayer("cnn1",
                         new ConvolutionLayer.Builder()
-                                .kernelSize(7, vectorSize)
+                                .kernelSize(5, vectorSize)
                                 .stride(1, vectorSize)
                                 .nOut(cnnLayerFeatureMaps)
                                 .build(),
                         "input")
                 .addLayer("cnn2",
                         new ConvolutionLayer.Builder()
-                                .kernelSize(9, vectorSize)
+                                .kernelSize(5, vectorSize)
                                 .stride(1, vectorSize)
                                 .nOut(cnnLayerFeatureMaps)
                                 .build(),

@@ -25,8 +25,8 @@ public class CnnMain {
 
     private static double learningRate = 0.01;
     private static int seed = 12345;
-    private static int batchSize = 64;
-    private static int nEpochs = 1;
+    private static int batchSize = 32;
+    private static int nEpochs = 2;
     private static int vectorSize = 300;
     private static int maxSentenceLength = 256;
     private static int cnnLayerFeatureMaps = 200;
